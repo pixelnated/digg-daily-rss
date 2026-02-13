@@ -37,6 +37,14 @@ env/
 cache/
 output/
 
+# Secrets - never commit these
+.env
+.env.*
+*.key
+*.secret
+secrets.json
+config.local.*
+
 # Chrome extension
 chrome-extension/*.pem
 
