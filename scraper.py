@@ -34,6 +34,7 @@ class Episode:
     file_name: str
     description: str = ""
     duration_seconds: int = 300  # Default 5 minutes
+    file_size: int = 5000000  # Default ~5MB (typical episode size)
     
     @property
     def guid(self) -> str:

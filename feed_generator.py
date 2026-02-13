@@ -152,10 +152,11 @@ class PodcastFeedGenerator:
         self._create_text_element(item, "guid", episode.guid, isPermaLink="false")
         
         # Audio enclosure (required for podcasts)
+        file_size = getattr(episode, 'file_size', 5000000)  # Default ~5MB
         ET.SubElement(item, "enclosure", {
             "url": episode.audio_url,
             "type": "audio/mpeg",
-            "length": "0"  # Length unknown, players will determine
+            "length": str(file_size)
         })
         
         # iTunes-specific episode elements
