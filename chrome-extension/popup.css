@@ -1,0 +1,201 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #ffffff;
+  min-width: 320px;
+  max-width: 400px;
+}
+
+.container {
+  padding: 16px;
+}
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.logo-text {
+  font-size: 28px;
+  font-weight: 900;
+  color: #4a9eff;
+  text-transform: lowercase;
+  letter-spacing: -1px;
+}
+
+.daily-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #333;
+  border-top-color: #4a9eff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading p {
+  color: #888;
+  font-size: 14px;
+}
+
+/* Player */
+.player {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.episode-info {
+  margin-bottom: 16px;
+}
+
+.episode-info h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #fff;
+}
+
+.episode-info .date {
+  font-size: 13px;
+  color: #888;
+}
+
+/* Audio Controls */
+.audio-controls {
+  margin-bottom: 16px;
+}
+
+.audio-controls audio {
+  width: 100%;
+  height: 36px;
+  border-radius: 8px;
+}
+
+/* Custom audio player styling */
+audio::-webkit-media-controls-panel {
+  background: #2a2a4e;
+}
+
+audio::-webkit-media-controls-play-button {
+  background-color: #4a9eff;
+  border-radius: 50%;
+}
+
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+  color: #fff;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn {
+  flex: 1;
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: #4a9eff;
+  color: #000;
+}
+
+.btn-primary:hover {
+  background: #6ab0ff;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Error */
+.error {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.error p {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.error .error-details {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 16px;
+}
+
+/* Footer */
+footer {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 12px;
+}
+
+footer a {
+  color: #888;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+footer a:hover {
+  color: #4a9eff;
+}
+
+.separator {
+  margin: 0 8px;
+  color: #444;
+}
+
+/* Utilities */
+.hidden {
+  display: none !important;
+}

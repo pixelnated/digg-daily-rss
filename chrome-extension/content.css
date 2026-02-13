@@ -1,0 +1,64 @@
+/**
+ * Digg Daily Player - Content Styles
+ * 
+ * Styles for the quick-play button and official post highlighting.
+ */
+
+/* Quick Play Button - Floating action button */
+#digg-daily-quick-play {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99999;
+  
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  
+  background: linear-gradient(135deg, #4a9eff 0%, #2d6cb8 100%);
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 18px;
+  
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(74, 158, 255, 0.4);
+  transition: all 0.2s ease;
+}
+
+#digg-daily-quick-play:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(74, 158, 255, 0.5);
+}
+
+#digg-daily-quick-play:active {
+  transform: translateY(0);
+}
+
+#digg-daily-quick-play svg {
+  flex-shrink: 0;
+}
+
+/* Highlight official Digg Daily posts */
+.digg-daily-official {
+  position: relative;
+}
+
+.digg-daily-official::before {
+  content: '📻';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 16px;
+  z-index: 10;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+/* Subtle border highlight */
+.digg-daily-official {
+  border-left: 3px solid #4a9eff !important;
+}

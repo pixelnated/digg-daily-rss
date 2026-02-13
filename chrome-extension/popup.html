@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digg Daily</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <span class="logo-text">digg</span>
+        <span class="daily-text">DAILY</span>
+      </div>
+    </header>
+    
+    <main>
+      <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p>Finding today's episode...</p>
+      </div>
+      
+      <div id="player" class="player hidden">
+        <div class="episode-info">
+          <h2 id="episode-title">Digg Daily</h2>
+          <p id="episode-date" class="date"></p>
+        </div>
+        
+        <div class="audio-controls">
+          <audio id="audio-player" controls preload="metadata">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+        
+        <div class="actions">
+          <a id="digg-link" href="#" target="_blank" class="btn btn-secondary">
+            View on Digg
+          </a>
+          <a id="download-link" href="#" target="_blank" class="btn btn-primary" download>
+            Download MP3
+          </a>
+        </div>
+      </div>
+      
+      <div id="error" class="error hidden">
+        <p>😕 Couldn't find today's episode</p>
+        <p class="error-details" id="error-message"></p>
+        <a href="https://digg.com/diggdaily" target="_blank" class="btn btn-primary">
+          Visit Digg Daily
+        </a>
+      </div>
+    </main>
+    
+    <footer>
+      <p>
+        <a href="#" id="refresh-btn">↻ Refresh</a>
+        <span class="separator">•</span>
+        <a href="https://digg.com/diggdaily" target="_blank">All Episodes</a>
+      </p>
+    </footer>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>

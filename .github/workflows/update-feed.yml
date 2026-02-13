@@ -1,0 +1,158 @@
+name: Update Digg Daily Feed
+
+on:
+  # Run daily at 2 PM UTC (9 AM ET / 6 AM PT)
+  # Digg Daily is typically posted in the morning ET
+  schedule:
+    - cron: '0 14 * * *'
+  
+  # Also allow manual trigger
+  workflow_dispatch:
+  
+  # Run on push to main for testing
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+      
+      - name: Generate RSS feed
+        run: |
+          python feed_generator.py --limit 50 --output feed.xml
+          
+          # Move output to public directory for GitHub Pages
+          mkdir -p public
+          mv output/feed.xml public/feed.xml
+          
+          # Create a simple index page
+          cat > public/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Digg Daily Podcast Feed</title>
+            <style>
+              body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                max-width: 600px;
+                margin: 50px auto;
+                padding: 20px;
+                background: #1a1a2e;
+                color: #eee;
+              }
+              h1 { color: #4a9eff; }
+              a { color: #4a9eff; }
+              .feed-url {
+                background: #2a2a4e;
+                padding: 15px;
+                border-radius: 8px;
+                word-break: break-all;
+                margin: 20px 0;
+              }
+              code { 
+                background: #3a3a5e; 
+                padding: 2px 6px; 
+                border-radius: 4px;
+              }
+              .subscribe-btn {
+                display: inline-block;
+                background: #4a9eff;
+                color: #000;
+                padding: 12px 24px;
+                border-radius: 8px;
+                text-decoration: none;
+                font-weight: bold;
+                margin: 10px 5px 10px 0;
+              }
+              .subscribe-btn:hover { background: #6ab0ff; }
+            </style>
+          </head>
+          <body>
+            <h1>📻 Digg Daily Podcast Feed</h1>
+            <p>
+              Unofficial podcast feed for the <strong>official AI-generated Digg Daily</strong> 
+              news digest from <a href="https://digg.com/diggdaily">digg.com</a>.
+            </p>
+            
+            <h2>Subscribe</h2>
+            <p>Copy this feed URL and add it to your podcast app:</p>
+            <div class="feed-url">
+              <code id="feed-url"></code>
+            </div>
+            
+            <a class="subscribe-btn" href="#" id="copy-btn">📋 Copy Feed URL</a>
+            <a class="subscribe-btn" href="feed.xml">📄 View RSS Feed</a>
+            
+            <h2>How to Subscribe</h2>
+            <ul>
+              <li><strong>Apple Podcasts:</strong> Library → Add Show by URL</li>
+              <li><strong>Pocket Casts:</strong> Search → Enter RSS URL</li>
+              <li><strong>Overcast:</strong> Add URL → Paste feed URL</li>
+              <li><strong>AntennaPod:</strong> + → Add podcast by URL</li>
+            </ul>
+            
+            <h2>About</h2>
+            <p>
+              This feed is automatically updated daily. It only includes the official 
+              AI-generated Digg Daily episodes, not the homemade recaps.
+            </p>
+            <p>
+              <a href="https://github.com/YOUR_USERNAME/digg-daily-rss">View source on GitHub</a>
+            </p>
+            
+            <script>
+              const feedUrl = window.location.origin + '/feed.xml';
+              document.getElementById('feed-url').textContent = feedUrl;
+              document.getElementById('copy-btn').onclick = function(e) {
+                e.preventDefault();
+                navigator.clipboard.writeText(feedUrl);
+                this.textContent = '✓ Copied!';
+                setTimeout(() => this.textContent = '📋 Copy Feed URL', 2000);
+              };
+            </script>
+          </body>
+          </html>
+          EOF
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
