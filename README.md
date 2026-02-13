@@ -2,7 +2,7 @@
 
 > 📻 Subscribe to the official AI-generated Digg Daily as a podcast or access it instantly via Chrome extension.
 
-Digg Daily is an AI-hosted news digest posted daily on [digg.com/diggdaily](https://digg.com/diggdaily). This project provides two ways to access it:
+Digg Daily is an AI-hosted news digest posted daily on [digg.com](https://digg.com). This project provides two ways to access it:
 
 1. **Podcast RSS Feed** - Subscribe in any podcast app
 2. **Chrome Extension** - Quick one-click access to today's episode
