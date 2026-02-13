@@ -22,13 +22,13 @@ https://YOUR_USERNAME.github.io/digg-daily-rss/feed.xml
 
 ### Supported Podcast Apps
 
-- **Apple Podcasts**: Library → Add Show by URL
-- **Spotify**: Not supported (doesn't allow custom RSS)
-- **Pocket Casts**: Search → Enter RSS URL
-- **Overcast**: Add URL → Paste feed URL
-- **AntennaPod**: + → Add podcast by URL
-- **Podcast Addict**: + → Add by RSS URL
-- **Castro**: Settings → Subscribe by URL
+- **[Apple Podcasts](https://www.apple.com/apple-podcasts/)**: Library → Add Show by URL
+- **[Spotify](https://spotify.com/)**: Not supported (doesn't allow custom RSS)
+- **[Pocket Casts](https://pocketcasts.com/)**: Search → Enter RSS URL
+- **[Overcast](https://overcast.fm/)**: Add URL → Paste feed URL
+- **[AntennaPod](https://antennapod.org/)**: + → Add podcast by URL
+- **[Podcast Addict](https://podcastaddict.com/)**: + → Add by RSS URL
+- **[Castro](https://castro.fm/)**: Settings → Subscribe by URL
 
 ### How It Works
 
