@@ -111,10 +111,12 @@ jobs:
             
             <h2>How to Subscribe</h2>
             <ul>
-              <li><strong>Apple Podcasts:</strong> Library → Add Show by URL</li>
-              <li><strong>Pocket Casts:</strong> Search → Enter RSS URL</li>
-              <li><strong>Overcast:</strong> Add URL → Paste feed URL</li>
-              <li><strong>AntennaPod:</strong> + → Add podcast by URL</li>
+              <li><strong><a href="https://www.apple.com/apple-podcasts/">Apple Podcasts</a>:</strong> Library → Add Show by URL</li>
+              <li><strong><a href="https://pocketcasts.com/">Pocket Casts</a>:</strong> Search → Enter RSS URL</li>
+              <li><strong><a href="https://overcast.fm/">Overcast</a>:</strong> Add URL → Paste feed URL</li>
+              <li><strong><a href="https://antennapod.org/">AntennaPod</a>:</strong> + → Add podcast by URL</li>
+              <li><strong><a href="https://podcastaddict.com/">Podcast Addict</a>:</strong> + → Add by RSS URL</li>
+              <li><strong><a href="https://castro.fm/">Castro</a>:</strong> Settings → Subscribe by URL</li>
             </ul>
             
             <h2>About</h2>
