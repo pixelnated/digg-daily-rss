@@ -101,6 +101,8 @@ python scraper.py
 
 A lightweight browser extension for quick access to Digg Daily.
 
+![Chrome Extension Screenshot](chrome-extension/screenshot/Screenshot%202026-02-13%20184055.png)
+
 ### Features
 
 - 🎵 Built-in audio player in popup
@@ -110,13 +112,25 @@ A lightweight browser extension for quick access to Digg Daily.
 - ⬇️ Download MP3 option
 - 🖼️ Highlights official episodes on digg.com
 
-### Installation (Developer Mode)
+### Installation
 
-1. Open `chrome://extensions/`
-2. Enable **Developer mode** (top right)
-3. Click **Load unpacked**
-4. Select the `chrome-extension` folder
-5. Create icons (see `chrome-extension/icons/README.md`)
+#### Option 1: Download from Releases (Recommended)
+
+1. Go to [Releases](https://github.com/pixelnated/digg-daily-rss/releases)
+2. Download the latest `digg-daily-extension-x.x.x.zip`
+3. Extract the ZIP to a folder
+4. Open `chrome://extensions/` in Chrome
+5. Enable **Developer mode** (top right)
+6. Click **Load unpacked**
+7. Select the extracted folder
+
+#### Option 2: Clone and Load (Developer Mode)
+
+1. Clone this repository
+2. Open `chrome://extensions/`
+3. Enable **Developer mode** (top right)
+4. Click **Load unpacked**
+5. Select the `chrome-extension` folder
 
 ### Creating Icons
 
@@ -133,6 +147,28 @@ convert icon128.png -resize 16x16 icon16.png
 
 Or use the SVG in `icons/README.md` with an online converter.
 
+## � Creating a Release
+
+### Using GitHub Actions (Recommended)
+
+1. Go to **Actions** → **Release Chrome Extension**
+2. Click **Run workflow**
+3. Enter the version (e.g., `1.0.0-beta.1`)
+4. Choose whether it's a pre-release
+5. Click **Run workflow**
+
+This will create a GitHub Release with the packaged extension ZIP attached.
+
+### Local Packaging (PowerShell)
+
+```powershell
+.\scripts\package-extension.ps1 -Version "1.0.0-beta.1"
+```
+
+The ZIP will be created in the `dist/` folder, ready for:
+- Manual GitHub release upload
+- Chrome Web Store submission
+
 ## 📁 Project Structure
 
 ```
@@ -142,13 +178,17 @@ digg_daily_rss/
 ├── requirements.txt        # Python dependencies
 ├── .github/
 │   └── workflows/
-│       └── update-feed.yml # Daily GitHub Actions workflow
+│       ├── update-feed.yml     # Daily feed update workflow
+│       └── release-extension.yml # Extension release workflow
 ├── chrome-extension/       # Browser extension
 │   ├── manifest.json
 │   ├── popup.html/css/js
 │   ├── background.js
 │   ├── content.js/css
 │   └── icons/
+├── scripts/                # Build scripts
+│   └── package-extension.ps1
+├── images/                 # Project images (logo, etc.)
 ├── output/                 # Generated feed (local)
 └── cache/                  # Cached episode data (local)
 ```

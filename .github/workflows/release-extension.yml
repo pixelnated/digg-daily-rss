@@ -1,0 +1,94 @@
+name: Release Chrome Extension
+
+on:
+  # Manual trigger with version input
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., 1.0.0-beta.1)'
+        required: true
+        default: '1.0.0-beta.1'
+      prerelease:
+        description: 'Mark as pre-release?'
+        required: true
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Update manifest version
+        run: |
+          # Update version in manifest.json
+          cd chrome-extension
+          jq --arg version "${{ github.event.inputs.version }}" \
+            '.version = $version' manifest.json > manifest.tmp.json
+          mv manifest.tmp.json manifest.json
+          echo "Updated manifest.json version to ${{ github.event.inputs.version }}"
+          cat manifest.json
+      
+      - name: Create extension ZIP
+        run: |
+          cd chrome-extension
+          
+          # Create ZIP file for Chrome Web Store submission
+          zip -r ../digg-daily-extension-${{ github.event.inputs.version }}.zip \
+            manifest.json \
+            popup.html \
+            popup.css \
+            popup.js \
+            background.js \
+            content.js \
+            content.css \
+            icons/
+          
+          echo "Created ZIP file:"
+          ls -la ../digg-daily-extension-${{ github.event.inputs.version }}.zip
+      
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ github.event.inputs.version }}
+          name: Digg Daily Extension v${{ github.event.inputs.version }}
+          body: |
+            ## Digg Daily Chrome Extension v${{ github.event.inputs.version }}
+            
+            ![Extension Screenshot](https://raw.githubusercontent.com/pixelnated/digg-daily-rss/main/chrome-extension/screenshot/Screenshot%202026-02-13%20184055.png)
+            
+            ### Installation Options
+            
+            #### Option 1: Chrome Web Store (Coming Soon)
+            Once published, you'll be able to install directly from the Chrome Web Store.
+            
+            #### Option 2: Manual Installation (Developer Mode)
+            1. Download `digg-daily-extension-${{ github.event.inputs.version }}.zip` below
+            2. Extract the ZIP to a folder
+            3. Open `chrome://extensions/` in Chrome
+            4. Enable **Developer mode** (top right)
+            5. Click **Load unpacked**
+            6. Select the extracted folder
+            
+            ### Features
+            - 🎵 Built-in audio player in popup
+            - 📻 Auto-fetches today's episode
+            - 🔄 30-minute cache for fast loading
+            - 🔗 Links to full episode on Digg
+            - ⬇️ Download MP3 option
+            - 🖼️ Highlights official episodes on digg.com
+            
+            ### Note
+            This is an unofficial, community-created extension. Not affiliated with Digg.com.
+          draft: false
+          prerelease: ${{ github.event.inputs.prerelease == 'true' }}
+          files: |
+            digg-daily-extension-${{ github.event.inputs.version }}.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
