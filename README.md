@@ -7,6 +7,10 @@ Digg Daily is an AI-hosted news digest posted daily on [digg.com/diggdaily](http
 1. **Podcast RSS Feed** - Subscribe in any podcast app
 2. **Chrome Extension** - Quick one-click access to today's episode
 
+> **Note:** The [/diggdaily community](https://digg.com/diggdaily) is curated by [@roland](https://digg.com/u/roland) and is not officially maintained by digg.com. Thanks roland!
+>
+> This project is created by [@pixelnated](https://digg.com/u/pixelnated) and is not officially affiliated with digg.com. Audio content is produced by Digg; this feed aggregator is community-created.
+
 ## 🎧 Podcast Feed
 
 ### Subscribe Now

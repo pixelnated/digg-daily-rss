@@ -195,6 +195,16 @@ footer a:hover {
   color: #444;
 }
 
+.attribution {
+  margin-top: 8px;
+  font-size: 10px;
+  color: #666;
+}
+
+.attribution a {
+  color: #4a9eff;
+}
+
 /* Utilities */
 .hidden {
   display: none !important;

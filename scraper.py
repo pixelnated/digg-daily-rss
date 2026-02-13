@@ -127,12 +127,12 @@ class DiggDailyAPI:
             try:
                 dt = datetime.strptime(date, "%Y-%m-%d")
                 formatted_date = dt.strftime("%B %d, %Y")
-                title = f"Digg Daily - {formatted_date}"
+                title = f"Digg Daily for {formatted_date}"
             except ValueError:
                 title = f"Digg Daily - Episode {episode_number}"
             
             # Description
-            description = f"Digg Daily Episode {episode_number} - AI-generated daily news digest from Digg.com for {formatted_date}."
+            description = f"Digg Daily for {formatted_date}."
             
             return Episode(
                 episode_id=episode_id,

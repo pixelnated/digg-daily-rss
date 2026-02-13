@@ -29,6 +29,10 @@ class PodcastFeedGenerator:
     Digg Daily is an AI-hosted show that summarizes trending stories and community discussions from Digg 
     each day. Episodes are typically 5 minutes long.
     
+    The /diggdaily community (digg.com/diggdaily) is curated by @roland and is not officially 
+    maintained by digg.com. Thanks roland!
+    
+    This feed is created by @pixelnated and is not officially affiliated with digg.com.
     Content created by Digg. Feed aggregator is community-created.
     """.strip()
     PODCAST_LINK = "https://digg.com/diggdaily"
@@ -165,11 +169,6 @@ class PodcastFeedGenerator:
         seconds = episode.duration_seconds % 60
         duration_str = f"{minutes}:{seconds:02d}"
         self._create_text_element(item, "duration", duration_str, self.ITUNES_NS)
-        
-        # Add episode number to description
-        if hasattr(episode, 'episode_number') and episode.episode_number:
-            enhanced_desc = f"{episode.description}\n\nEpisode #{episode.episode_number}"
-            item.find("description").text = enhanced_desc
     
     def save_feed(self, episodes: list[Episode], filename: str = "feed.xml") -> Path:
         """Generate and save the feed to a file."""
