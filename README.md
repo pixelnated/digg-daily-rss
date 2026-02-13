@@ -15,7 +15,8 @@ Digg Daily is an AI-hosted news digest posted daily on [digg.com/diggdaily](http
 
 ### Subscribe Now
 
-Once deployed, the feed URL will be:
+**🔗 [Subscribe Page](https://pixelnated.github.io/digg-daily-rss/)** | **[Direct Feed URL](https://pixelnated.github.io/digg-daily-rss/feed.xml)**
+
 ```
 https://pixelnated.github.io/digg-daily-rss/feed.xml
 ```
