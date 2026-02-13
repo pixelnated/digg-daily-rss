@@ -17,7 +17,7 @@ Digg Daily is an AI-hosted news digest posted daily on [digg.com/diggdaily](http
 
 Once deployed, the feed URL will be:
 ```
-https://YOUR_USERNAME.github.io/digg-daily-rss/feed.xml
+https://pixelnated.github.io/digg-daily-rss/feed.xml
 ```
 
 ### Supported Podcast Apps
@@ -87,7 +87,7 @@ python scraper.py
 
 5. **Get your feed URL**:
    ```
-   https://YOUR_USERNAME.github.io/digg-daily-rss/feed.xml
+   https://pixelnated.github.io/digg-daily-rss/feed.xml
    ```
 
 ## 🧩 Chrome Extension

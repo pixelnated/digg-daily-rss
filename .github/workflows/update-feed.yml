@@ -123,11 +123,11 @@ jobs:
               AI-generated Digg Daily episodes, not the homemade recaps.
             </p>
             <p>
-              <a href="https://github.com/YOUR_USERNAME/digg-daily-rss">View source on GitHub</a>
+              <a href="https://github.com/pixelnated/digg-daily-rss">View source on GitHub</a>
             </p>
             
             <script>
-              const feedUrl = window.location.origin + '/feed.xml';
+              const feedUrl = window.location.href.replace(/\/?$/, '/') + 'feed.xml';
               document.getElementById('feed-url').textContent = feedUrl;
               document.getElementById('copy-btn').onclick = function(e) {
                 e.preventDefault();
