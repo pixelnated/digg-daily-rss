@@ -47,6 +47,27 @@ config.local.*
 
 # Chrome extension
 chrome-extension/*.pem
+chrome-extension/dist/
+
+# Distribution builds
+*.zip
+
+# Logs
+*.log
+logs/
+
+# Test artifacts
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Node (if JS tooling added later)
+node_modules/
+package-lock.json
+
+# Temporary files
+*.tmp
+*.bak
 
 # OS
 .DS_Store
