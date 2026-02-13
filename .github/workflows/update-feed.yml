@@ -122,7 +122,7 @@ jobs:
             <h2>About</h2>
             <p>
               This feed is automatically updated daily. It only includes the official 
-              AI-generated Digg Daily episodes, not the homemade recaps.
+              AI-generated Digg Daily episodes.
             </p>
             <p>
               <a href="https://github.com/pixelnated/digg-daily-rss">View source on GitHub</a>
