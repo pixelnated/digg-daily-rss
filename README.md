@@ -1,15 +1,21 @@
 # Digg Daily RSS Feed & Chrome Extension
 
-> 📻 Subscribe to the official AI-generated Digg Daily as a podcast or access it instantly via Chrome extension.
+![Digg Daily RSS Logo](images/digg-daily-rss-logo.jpeg)
 
-Digg Daily is an AI-hosted news digest posted daily on [digg.com](https://digg.com). This project provides two ways to access it:
+> 📻 Listen to Digg Daily in the podcast app of your choice — no browser required.
 
-1. **Podcast RSS Feed** - Subscribe in any podcast app
-2. **Chrome Extension** - Quick one-click access to today's episode
+## What This Project Does
 
-> **Note:** The [/diggdaily community](https://digg.com/diggdaily) is curated by [@roland](https://digg.com/u/roland) and is not officially maintained by digg.com. Thanks roland!
+**This project does NOT create the AI audio content.** Digg Daily is an AI-generated news digest produced and hosted by [Digg.com](https://digg.com). We simply provide a **podcast-friendly RSS feed wrapper** so you can listen to it on the go in your favorite podcast player, rather than being tied to the Digg website.
+
+This project provides two ways to access Digg Daily outside the website:
+
+1. **Podcast RSS Feed** - Subscribe in any podcast app (Apple Podcasts, Pocket Casts, Overcast, etc.)
+2. **Chrome Extension** - Quick one-click access to today's episode from your browser
+
+> **⚠️ Disclaimer:** This is an **unofficial, community-created** project. We are **not affiliated with Digg.com**. All audio content is created, owned, and hosted by Digg. This tool simply wraps their publicly available audio files into a standard podcast RSS format for easier consumption.
 >
-> This project is created by [@pixelnated](https://digg.com/u/pixelnated) and is not officially affiliated with digg.com. Audio content is produced by Digg; this feed aggregator is community-created.
+> The [/diggdaily community](https://digg.com/diggdaily) is curated by [@roland](https://digg.com/u/roland). This RSS feed project is created by [@pixelnated](https://digg.com/u/pixelnated).
 
 ## 🎧 Podcast Feed
 
@@ -190,7 +196,15 @@ MIT License - See [LICENSE](LICENSE)
 
 ## ⚠️ Disclaimer
 
-This is an **unofficial** project not affiliated with Digg. All podcast content belongs to Digg.com. This tool simply aggregates publicly available audio files into a podcast-friendly format.
+This is an **unofficial, community-created** project and is **not affiliated with or endorsed by Digg.com**.
+
+- **We do NOT create the AI-generated audio content** — that is produced entirely by Digg
+- **We do NOT host the audio files** — they are served directly from Digg's CDN
+- **We only provide an RSS feed wrapper** — making it easier to consume Digg Daily in podcast apps
+
+All podcast content, including the AI-generated audio summaries, belongs to Digg.com. This tool simply aggregates publicly available audio files into a standard podcast RSS format so you can listen on the go without visiting the website.
+
+If Digg requests removal of this project, we will comply.
 
 ---
 

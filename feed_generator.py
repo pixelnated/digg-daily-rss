@@ -21,19 +21,20 @@ class PodcastFeedGenerator:
     # Podcast metadata
     PODCAST_TITLE = "Digg Daily (Official AI Version)"
     PODCAST_DESCRIPTION = """
-    Unofficial podcast feed for Digg Daily - the official AI-generated daily news digest from Digg.com.
+    Unofficial podcast RSS feed for Digg Daily - listen in your favorite podcast app instead of the website.
     
-    This feed pulls directly from Digg's official API - the same source used by the Digg Daily player 
-    on the website. Updated automatically with each new episode.
+    IMPORTANT: This feed does NOT create the audio content. Digg Daily is an AI-generated news digest 
+    produced entirely by Digg.com. This project simply wraps the publicly available audio files into a 
+    standard podcast RSS format so you can listen on the go.
     
-    Digg Daily is an AI-hosted show that summarizes trending stories and community discussions from Digg 
-    each day. Episodes are typically 5 minutes long.
+    The audio is pulled directly from Digg's official API and CDN - the same source used by the player 
+    on the website. This feed is updated automatically with each new episode.
     
-    The /diggdaily community (digg.com/diggdaily) is curated by @roland and is not officially 
-    maintained by digg.com. Thanks roland!
+    Digg Daily summarizes trending stories and community discussions from Digg each day. Episodes are 
+    typically 5 minutes long.
     
-    This feed is created by @pixelnated and is not officially affiliated with digg.com.
-    Content created by Digg. Feed aggregator is community-created.
+    This is a community-created project by @pixelnated and is NOT affiliated with or endorsed by Digg.com. 
+    All audio content belongs to Digg.
     """.strip()
     PODCAST_LINK = "https://digg.com/diggdaily"
     PODCAST_AUTHOR = "Digg"

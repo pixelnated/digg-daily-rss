@@ -121,10 +121,15 @@ jobs:
             </style>
           </head>
           <body>
+            <img src="images/digg-daily-rss-logo.jpeg" alt="Digg Daily RSS" style="max-width: 300px; margin-bottom: 20px; border-radius: 12px;">
             <h1>📻 Digg Daily Podcast Feed</h1>
             <p>
-              Unofficial podcast feed for the <strong>official AI-generated Digg Daily</strong> 
-              news digest from <a href="https://digg.com/diggdaily">digg.com</a>.
+              Listen to <strong>Digg Daily</strong> in your favorite podcast app — no browser required.
+            </p>
+            <p style="background: #2a2a4e; padding: 15px; border-radius: 8px; border-left: 4px solid #4a9eff;">
+              <strong>⚠️ Note:</strong> This feed does <strong>not</strong> create the AI audio content. 
+              Digg Daily is produced entirely by <a href="https://digg.com">Digg.com</a>. 
+              This is an unofficial, community-created RSS wrapper that makes it easier to listen on the go.
             </p>
             
             <h2>Subscribe</h2>
@@ -148,11 +153,16 @@ jobs:
             
             <h2>About</h2>
             <p>
-              This feed is automatically updated daily. It only includes the official 
-              AI-generated Digg Daily episodes.
+              This feed is automatically updated daily. It pulls audio directly from Digg's 
+              servers and wraps it in a standard podcast RSS format.
             </p>
             <p>
-              <a href="https://github.com/pixelnated/digg-daily-rss">View source on GitHub</a>
+              <strong>We are not affiliated with Digg.com.</strong> All audio content is created, 
+              owned, and hosted by Digg. We simply provide a convenient way to subscribe in podcast apps.
+            </p>
+            <p>
+              <a href="https://github.com/pixelnated/digg-daily-rss">View source on GitHub</a> |
+              Created by <a href="https://digg.com/u/pixelnated">@pixelnated</a>
             </p>
             
             <script>
