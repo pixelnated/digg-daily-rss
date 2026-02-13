@@ -40,7 +40,7 @@ class PodcastFeedGenerator:
     PODCAST_LANGUAGE = "en-us"
     PODCAST_CATEGORY = "News"
     PODCAST_SUBCATEGORY = "Daily News"
-    PODCAST_IMAGE = "https://digg.com/favicon.ico"  # Placeholder
+    PODCAST_IMAGE = "https://pixelnated.github.io/digg-daily-rss/images/digg-daily-rss-logo.jpeg"
     PODCAST_EXPLICIT = "false"
     
     # iTunes namespace
@@ -164,6 +164,9 @@ class PodcastFeedGenerator:
         self._create_text_element(item, "summary", episode.description, self.ITUNES_NS)
         self._create_text_element(item, "explicit", self.PODCAST_EXPLICIT, self.ITUNES_NS)
         self._create_text_element(item, "episodeType", "full", self.ITUNES_NS)
+        
+        # Episode artwork (uses same image as podcast)
+        ET.SubElement(item, f"{{{self.ITUNES_NS}}}image", href=self.PODCAST_IMAGE)
         
         # Duration (format: HH:MM:SS or MM:SS)
         minutes = episode.duration_seconds // 60

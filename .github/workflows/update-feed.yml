@@ -49,6 +49,9 @@ jobs:
           mkdir -p public
           mv output/feed.xml public/feed.xml
           
+          # Copy images folder for artwork and Open Graph
+          cp -r images public/images
+          
           # Create a simple index page
           cat > public/index.html << 'EOF'
           <!DOCTYPE html>
@@ -65,6 +68,22 @@ jobs:
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Digg Daily Podcast Feed</title>
+            
+            <!-- Open Graph / Facebook -->
+            <meta property="og:type" content="website">
+            <meta property="og:url" content="https://pixelnated.github.io/digg-daily-rss/">
+            <meta property="og:title" content="Digg Daily Podcast Feed">
+            <meta property="og:description" content="Unofficial podcast feed for the official AI-generated Digg Daily news digest. Subscribe in any podcast app.">
+            <meta property="og:image" content="https://pixelnated.github.io/digg-daily-rss/images/digg-daily-rss-logo.jpeg">
+            <meta property="og:image:width" content="1280">
+            <meta property="og:image:height" content="720">
+            
+            <!-- Twitter -->
+            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:url" content="https://pixelnated.github.io/digg-daily-rss/">
+            <meta name="twitter:title" content="Digg Daily Podcast Feed">
+            <meta name="twitter:description" content="Unofficial podcast feed for the official AI-generated Digg Daily news digest. Subscribe in any podcast app.">
+            <meta name="twitter:image" content="https://pixelnated.github.io/digg-daily-rss/images/digg-daily-rss-logo.jpeg">
             <style>
               body {
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
