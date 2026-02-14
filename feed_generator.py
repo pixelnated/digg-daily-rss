@@ -41,7 +41,7 @@ class PodcastFeedGenerator:
     PODCAST_LANGUAGE = "en-us"
     PODCAST_CATEGORY = "News"
     PODCAST_SUBCATEGORY = "Daily News"
-    PODCAST_IMAGE = "https://pixelnated.github.io/digg-daily-rss/images/digg-daily-rss-logo.jpeg"
+    PODCAST_IMAGE = "https://pixelnated.github.io/digg-daily-rss/images/digg-daily-rss-logo-square.jpeg"
     PODCAST_EXPLICIT = "false"
     
     # iTunes namespace
