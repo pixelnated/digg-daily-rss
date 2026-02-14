@@ -17,6 +17,9 @@ on:
           - 'true'
           - 'false'
 
+permissions:
+  contents: write
+
 jobs:
   build-and-release:
     runs-on: ubuntu-latest
@@ -54,7 +57,7 @@ jobs:
           ls -la ../digg-daily-extension-${{ github.event.inputs.version }}.zip
       
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ github.event.inputs.version }}
           name: Digg Daily Extension v${{ github.event.inputs.version }}
@@ -90,5 +93,3 @@ jobs:
           prerelease: ${{ github.event.inputs.prerelease == 'true' }}
           files: |
             digg-daily-extension-${{ github.event.inputs.version }}.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
