@@ -15,7 +15,7 @@ This project provides two ways to access Digg Daily outside the website:
 
 > **⚠️ Disclaimer:** This is an **unofficial, community-created** project. We are **not affiliated with Digg.com**. All audio content is created, owned, and hosted by Digg. This tool simply wraps their publicly available audio files into a standard podcast RSS format for easier consumption.
 >
-> The [/diggdaily community](https://digg.com/diggdaily) is curated by [@roland](https://digg.com/u/roland). This RSS feed project is created by [@pixelnated](https://digg.com/u/pixelnated).
+> The [/diggdaily community](https://digg.com/diggdaily) is curated by [@roland](https://digg.com/@roland). This RSS feed project is created by [@pixelnated](https://digg.com/@pixelnated).
 
 ## 🎧 Podcast Feed
 
