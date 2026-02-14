@@ -101,9 +101,10 @@ class PodcastFeedGenerator:
         self._create_text_element(channel, "explicit", self.PODCAST_EXPLICIT, self.ITUNES_NS)
         self._create_text_element(channel, "type", "episodic", self.ITUNES_NS)
         
-        # iTunes owner
+        # iTunes owner (required by Spotify)
         owner = ET.SubElement(channel, f"{{{self.ITUNES_NS}}}owner")
         self._create_text_element(owner, "name", "Digg Daily Feed", self.ITUNES_NS)
+        self._create_text_element(owner, "email", "jeremiah.hester+diggdailyrss@gmail.com", self.ITUNES_NS)
         
         # iTunes category
         category = ET.SubElement(channel, f"{{{self.ITUNES_NS}}}category", text=self.PODCAST_CATEGORY)
