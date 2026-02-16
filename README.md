@@ -46,6 +46,21 @@ The feed is automatically updated daily via GitHub Actions:
 3. Generates a podcast-compatible RSS feed
 4. Publishes to GitHub Pages
 
+### 🆕 Episode Summaries (February 2026)
+
+Episode descriptions now include **AI-generated summaries** of each episode's content! Here's how it works:
+
+1. **Audio Transcription** — Uses [OpenAI Whisper](https://github.com/openai/whisper) (MIT license) running locally on GitHub Actions to transcribe the MP3 audio
+2. **Extractive Summarization** — Identifies and extracts the most important sentences from the transcript using position, keyword, and length scoring
+3. **Zero Cost** — Everything runs locally on GitHub Actions runners (free for public repos) with no external API calls
+
+The summaries appear in your podcast app's episode description, giving you a quick preview of what each episode covers before you listen.
+
+**Technical Details:**
+- Whisper "tiny" model (~30 seconds to transcribe a 5-minute episode)
+- Summaries are cached to avoid re-processing old episodes
+- Feature can be toggled on/off via `ENABLE_SUMMARIES` environment variable in the workflow
+
 ## 🔧 Local Development
 
 ### Prerequisites
@@ -173,8 +188,9 @@ The ZIP will be created in the `dist/` folder, ready for:
 
 ```
 digg_daily_rss/
-├── scraper.py              # Scrapes digg.com/diggdaily for episodes
+├── scraper.py              # Fetches episodes from Digg API
 ├── feed_generator.py       # Generates podcast RSS feed
+├── summarizer.py           # Transcribes & summarizes episodes (Whisper)
 ├── requirements.txt        # Python dependencies
 ├── .github/
 │   └── workflows/
@@ -190,7 +206,7 @@ digg_daily_rss/
 │   └── package-extension.ps1
 ├── images/                 # Project images (logo, etc.)
 ├── output/                 # Generated feed (local)
-└── cache/                  # Cached episode data (local)
+└── cache/                  # Cached episode data & summaries (local)
 ```
 
 ## ❓ FAQ
