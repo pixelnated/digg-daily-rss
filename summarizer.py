@@ -249,24 +249,44 @@ class Summarizer:
     
     def summarize_episodes(self, episodes: list, limit: int = 5) -> dict[str, EpisodeSummary]:
         """
-        Summarize multiple episodes.
+        Summarize multiple episodes, using cache when available.
+        
+        This method efficiently handles caching:
+        - Cached episodes are loaded instantly (no download/transcription)
+        - Only NEW episodes count toward the transcription limit
+        - This means subsequent runs are fast once cache is built
         
         Args:
             episodes: List of Episode objects with episode_id and audio_url
-            limit: Maximum number to process (to control runtime)
+            limit: Maximum number of NEW episodes to transcribe per run
             
         Returns:
             Dict mapping episode_id to EpisodeSummary
         """
         results = {}
+        new_transcriptions = 0
         
-        for i, episode in enumerate(episodes[:limit]):
-            print(f"\n[{i+1}/{min(limit, len(episodes))}] Processing episode {episode.episode_id}...")
+        for i, episode in enumerate(episodes):
+            # Check if already cached (fast path)
+            cached = self._load_from_cache(episode.episode_id)
+            if cached:
+                print(f"[{i+1}/{len(episodes)}] Cached: episode {episode.episode_id}")
+                results[episode.episode_id] = cached
+                continue
             
+            # New episode - check if we've hit transcription limit
+            if new_transcriptions >= limit:
+                print(f"[{i+1}/{len(episodes)}] Skipped: transcription limit ({limit}) reached")
+                continue
+            
+            # Transcribe new episode
+            print(f"\n[{i+1}/{len(episodes)}] Transcribing NEW episode {episode.episode_id}...")
             summary = self.summarize_episode(episode.episode_id, episode.audio_url)
             if summary:
                 results[episode.episode_id] = summary
+                new_transcriptions += 1
         
+        print(f"\nSummary: {len(results)} total, {new_transcriptions} newly transcribed")
         return results
 
 
