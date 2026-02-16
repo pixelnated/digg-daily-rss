@@ -12,11 +12,11 @@ on:
       enable_summaries:
         description: 'Enable AI transcription/summarization'
         required: false
-        default: 'false'
+        default: 'true'
         type: choice
         options:
-          - 'false'
           - 'true'
+          - 'false'
   
   # Run on push to main for testing
   push:
@@ -36,8 +36,8 @@ on:
 # Time: Adds ~3-4 minutes to workflow for transcription
 # ============================================================
 env:
-  # Change to 'true' to enable episode summarization
-  ENABLE_SUMMARIES: ${{ github.event.inputs.enable_summaries || 'false' }}
+  # Change to 'false' to disable episode summarization
+  ENABLE_SUMMARIES: ${{ github.event.inputs.enable_summaries || 'true' }}
   WHISPER_MODEL: 'tiny'  # Options: tiny, base (base is better but slower)
 
 permissions:
