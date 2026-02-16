@@ -8,10 +8,37 @@ on:
   
   # Also allow manual trigger
   workflow_dispatch:
+    inputs:
+      enable_summaries:
+        description: 'Enable AI transcription/summarization'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'false'
+          - 'true'
   
   # Run on push to main for testing
   push:
     branches: [main]
+
+# ============================================================
+# EPISODE SUMMARIZATION FEATURE
+# ============================================================
+# Set ENABLE_SUMMARIES to 'true' to enable AI transcription.
+# This uses OpenAI Whisper (local, free) to transcribe episodes
+# and add summaries to the podcast descriptions.
+#
+# To enable: Change the default value below to 'true'
+# To disable: Change it back to 'false' (or just remove it)
+#
+# Cost: FREE (runs locally on GitHub Actions)
+# Time: Adds ~3-4 minutes to workflow for transcription
+# ============================================================
+env:
+  # Change to 'true' to enable episode summarization
+  ENABLE_SUMMARIES: ${{ github.event.inputs.enable_summaries || 'false' }}
+  WHISPER_MODEL: 'tiny'  # Options: tiny, base (base is better but slower)
 
 permissions:
   contents: read
@@ -37,13 +64,20 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
       
+      - name: Install ffmpeg (for audio transcription)
+        if: env.ENABLE_SUMMARIES == 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+      
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
       
       - name: Generate RSS feed
         run: |
-          python feed_generator.py --limit 50 --output feed.xml
+          echo "Summarization enabled: $ENABLE_SUMMARIES"
+          python feed_generator.py --limit 50 --output feed.xml --summarize-limit 5
           
           # Move output to public directory for GitHub Pages
           mkdir -p public

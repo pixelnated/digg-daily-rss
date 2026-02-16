@@ -2,3 +2,7 @@
 requests>=2.28.0
 beautifulsoup4>=4.11.0
 lxml>=4.9.0
+
+# Audio transcription/summarization (optional - set ENABLE_SUMMARIES=true)
+# These are only needed if episode summarization is enabled
+openai-whisper>=20231117

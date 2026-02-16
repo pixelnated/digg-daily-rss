@@ -4,8 +4,11 @@ Podcast RSS Feed Generator for Digg Daily
 
 Generates a podcast-compatible RSS 2.0 feed with iTunes podcast extensions
 that can be consumed by any podcast player.
+
+Supports optional episode summarization when ENABLE_SUMMARIES=true.
 """
 
+import os
 import xml.etree.ElementTree as ET
 from datetime import datetime
 from pathlib import Path
@@ -13,6 +16,15 @@ from typing import Optional
 from xml.dom import minidom
 
 from scraper import DiggDailyAPI, Episode
+
+# Conditional import for summarizer (may not be installed)
+try:
+    from summarizer import Summarizer, is_enabled as summaries_enabled
+    SUMMARIZER_AVAILABLE = True
+except ImportError:
+    SUMMARIZER_AVAILABLE = False
+    def summaries_enabled():
+        return False
 
 
 class PodcastFeedGenerator:
@@ -193,10 +205,20 @@ def main():
                         help="Maximum episodes to include (default: 50)")
     parser.add_argument("--output", type=str, default="feed.xml",
                         help="Output filename (default: feed.xml)")
+    parser.add_argument("--summarize-limit", type=int, default=5,
+                        help="Max episodes to summarize per run (default: 5)")
     args = parser.parse_args()
     
     print("Digg Daily Podcast Feed Generator")
     print("=" * 40)
+    
+    # Check summarization status
+    summaries_active = SUMMARIZER_AVAILABLE and summaries_enabled()
+    print(f"\nSummarization: {'ENABLED' if summaries_active else 'DISABLED'}")
+    if not SUMMARIZER_AVAILABLE:
+        print("  (summarizer module not installed)")
+    elif not summaries_enabled():
+        print("  (set ENABLE_SUMMARIES=true to enable)")
     
     # Fetch episodes from official API
     print(f"\nFetching episodes from Digg Daily API...")
@@ -213,6 +235,23 @@ def main():
         print("No episodes found. Check if the API is accessible.")
         return
     
+    # Generate summaries if enabled
+    if summaries_active:
+        print(f"\nGenerating summaries (limit: {args.summarize_limit} per run)...")
+        summarizer = Summarizer()
+        summaries = summarizer.summarize_episodes(episodes, limit=args.summarize_limit)
+        
+        # Update episode descriptions with summaries
+        for episode in episodes:
+            if episode.episode_id in summaries:
+                summary_obj = summaries[episode.episode_id]
+                # Prepend summary to description
+                original_desc = episode.description or ""
+                episode.description = f"{summary_obj.summary}\n\n---\n\n{original_desc}" if original_desc else summary_obj.summary
+                print(f"  Added summary to episode {episode.episode_number}")
+        
+        print(f"\nProcessed {len(summaries)} summaries")
+    
     # Generate feed
     print("\nGenerating podcast feed...")
     generator = PodcastFeedGenerator()
@@ -227,6 +266,8 @@ def main():
         print(f"\nLatest episode: Episode {ep.episode_number}")
         print(f"  Date: {ep.date}")
         print(f"  Audio URL: {ep.audio_url}")
+        if ep.description and len(ep.description) > 100:
+            print(f"  Description preview: {ep.description[:100]}...")
     
     print("\nTo use this feed:")
     print("1. Host the feed.xml file on a web server (GitHub Pages, Netlify, etc.)")
