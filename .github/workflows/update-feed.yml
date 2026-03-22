@@ -1,12 +1,12 @@
 name: Update Digg Daily Feed
 
 on:
-  # Run daily at 2 PM UTC (9 AM ET / 6 AM PT)
-  # Digg Daily is typically posted in the morning ET
-  schedule:
-    - cron: '0 14 * * *'
-  
-  # Also allow manual trigger
+  # Scheduled builds are paused while digg.com is offline.
+  # Re-enable by uncommenting the schedule block below.
+  # schedule:
+  #   - cron: '0 14 * * *'  # Daily at 2 PM UTC (9 AM ET / 6 AM PT)
+
+  # Manual trigger only while site is down
   workflow_dispatch:
     inputs:
       enable_summaries:
@@ -17,10 +17,6 @@ on:
         options:
           - 'true'
           - 'false'
-  
-  # Run on push to main for testing
-  push:
-    branches: [main]
 
 # ============================================================
 # EPISODE SUMMARIZATION FEATURE
